@@ -1,0 +1,91 @@
+<%-include('./header') %>
+<body>
+    <nav class="navbar  bg-info p-3">
+        <div class="container-fluid">
+          <a class="navbar-brand ">Bootstrap</a>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">ADD</button>
+        </div>
+      </nav>
+
+     
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">user</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="post" id="userform">
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">username</label>
+            <input type="text" class="form-control" id="recipient-name" name="username">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">email</label>
+            <input type="email" class="form-control" id="recipient-name" name="email">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">phone</label>
+            <input type="text" class="form-control" id="recipient-name" name="phone">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">city</label>
+            <input type="text" class="form-control" id="recipient-name" name="city">
+          </div>     
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="user-form-submit">submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="contianer table-responsive p-5">
+    <table id="example" class="table table-striped " style="width:100%">
+        <thead>
+            <tr>
+                <th>userid</th>
+                <th>username</th>
+                <th>email</th>
+                <th>phone</th>
+                <th>city</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody> 
+            <% db.forEach((value)=>{ %>
+                <tr>
+                    <td><%= value.userid %></td>
+                    <td><%= value.username %></td>
+                    <td><%= value.email %></td>
+                    <td><%= value.phone %></td>
+                    <td><%= value.city %></td>
+                    <td>
+                        <!-- <button type="submit" id="edit-btn">Edit</button>
+                        <button type="submit" id="delete-btn">Delete</button> 
+                         <button type="button" class="btn btn-secondary" id="edit-btn" >Edit</button>
+                        <button type="button" class="btn btn-primary" id="delete-btn">Delete</button> -->
+                        
+                        <button type="button" class="btn btn-success"><a style="color:white; text-decoration: none;" href="/edit/<%= value.userid %>">Edit</a></button>
+                        <button type="button" class="btn btn-danger"><a style="color: white; text-decoration: none;" href="/delete/<%= value.userid %>">Delete</a> </button>
+                        
+                        <!-- <button type="button" class="btn btn-secondary" id="edit-btn" ><a href="">Edit</a></button>
+                        <button type="button" class="btn btn-primary" id="delete-btn"><a href="">Delete</a></button> -->
+
+                    </td>
+                </tr>
+           <% }) %>
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+   
+<%-include('./footer') %>
